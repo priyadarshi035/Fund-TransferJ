@@ -11,7 +11,7 @@
        classpathref="maven-ant-tasks.classpath" />-->
     <property environment="env"/>
 	<!-- directory-properties -->
-    
+    <property name="build.dir" value="." />
     <property name="libs.dir" value="WebContent/WEB-INF/lib" />
      
     <!-- maven-ant-tasks jar -->
