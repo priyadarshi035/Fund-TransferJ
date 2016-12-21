@@ -88,7 +88,7 @@
 	<target name="deploy" >
       <artifact:pom id="tmp.pom" groupid="${artifact.group}" artifactid="${artifact.name}" version="${artifact.version}" packaging="${artifact.type}" name="${artifact.name}"/>
 	      	           <artifact:writepom pomRefId="tmp.pom" file="${artifact.pom}" trim="false"/>
-        <artifact:deploy file="fundTransferJ.war" >
+        <artifact:deploy file="fundTransferJ.war" file=".sonar/issues-report/issues-report.html" >
 			            <remoteRepository url="${remote.repo.url}">
                 <authentication username="${remote.repo.username}" password="${remote.repo.password}" />
             </remoteRepository>
