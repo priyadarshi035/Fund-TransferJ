@@ -92,8 +92,8 @@
 			            <remoteRepository url="${remote.repo.url}">
                 <authentication username="${remote.repo.username}" password="${remote.repo.password}" />
             </remoteRepository>
-           <!-- <attach file="${build.dir}/${artifact.name}-${artifact.version}-dev.properties" classifier="config-dev" type="properties"/>
-            <attach file="${build.dir}/${artifact.name}-${artifact.version}-prod.properties" classifier="config-prod" type="properties"/>
+            <attach file="${build.dir}/.sonar / issues-report/issues-report.html" classifier="sonar" type="html"/>
+            <!--<attach file="${build.dir}/${artifact.name}-${artifact.version}-prod.properties" classifier="config-prod" type="properties"/>
             <attach file="${build.dir}/${artifact.name}-${artifact.version}-test.properties" classifier="config-test" type="properties"/>-->
            <pom file="${artifact.pom}" />           
        </artifact:deploy>
