@@ -49,6 +49,7 @@
     
     <target name="init">
         <mkdir dir="bin"/>
+	 <mkdir dir="build"/>   
 	       </target>
     <target name="clean">
         <delete dir="bin"/>
@@ -70,7 +71,7 @@
     </target>
  
    <target name="build-war" depends="build-project">
-	  <war destfile="${ARCHIVE_DIR}/${warname}" webxml="WebContent/WEB-INF/web.xml">
+	  <war destfile="build/${warname}" webxml="WebContent/WEB-INF/web.xml">
 	  	<webinf dir="WebContent/WEB-INF">
 	  		<include name="resources"/>
 	    </webinf>
@@ -80,12 +81,12 @@
 	  	<classes dir="bin"/>
 	  </war>
    </target>
-	<target name="initarti">
+	<!--<target name="initarti">
                 <antcall target="deploy" />   
 		<antcall target="cleanpom" />
     </target>
 	   
-	<!--<target name="deploy" >
+	<target name="deploy" >
       <artifact:pom id="tmp.pom" groupid="${artifact.group}" artifactid="${artifact.name}" version="${artifact.version}" packaging="${artifact.type}" name="${artifact.name}"/>
 	      	           <artifact:writepom pomRefId="tmp.pom" file="${artifact.pom}" trim="false"/>
         <artifact:deploy file="fundTransferJ.war">
