@@ -18,9 +18,9 @@
     
  <property name="mvn.ant.tasks.jar" value="WebContent/WEB-INF/lib/maven-ant-tasks-2.1.3.jar" />
     <!-- remote-repo -->
-   <property name="remote.repo.url" value="https://artifactorypoc.eu-gb.mybluemix.net/artifactory/" />
-    <property name="remote.repo.username" value="admin" />
-    <property name="remote.repo.password" value="password" />
+   <property name="remote.repo.url" value=" https://gbsartifactory.in.edst.ibm.com/artifactory/" />
+    <property name="remote.repo.username" value="mounika.mutcherla@in.ibm.com" />
+    <property name="remote.repo.password" value="bhagi@HARI" />
  
     <!-- including tha maven-ant-tasks-jar into classpath -->
       <property name="src.Dir" value="src"/>
@@ -41,7 +41,7 @@
     	</fileset>
     </path>
     
-	<property name="artifact.group" value="Unit1" />
+	<property name="artifact.group" value="Fund-Fransfer" />
 	<property name="artifact.name" value="my" />
     <property name="artifact.version" value="2.1.4" />
     <property name="artifact.type" value="war" />
