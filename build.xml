@@ -70,7 +70,7 @@
     </target>
  
    <target name="build-war" depends="build-project">
-	  <war destfile="build/${warname}" webxml="WebContent/WEB-INF/web.xml">
+	  <war destfile="${ARCHIVE_DIR}/${warname}" webxml="WebContent/WEB-INF/web.xml">
 	  	<webinf dir="WebContent/WEB-INF">
 	  		<include name="resources"/>
 	    </webinf>
