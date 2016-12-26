@@ -16,7 +16,7 @@
     <!-- maven-ant-tasks jar -->
     
 <property name="mvn.ant.tasks.jar" value="WebContent/WEB-INF/lib/maven-ant-tasks-2.1.3.jar" />
-     remote-repo 
+      
    <property name="remote.repo.url" value="https://169.50.113.178:8443/artifactory" />
     <property name="remote.repo.username" value="admin" />
     <property name="remote.repo.password" value="password" />
