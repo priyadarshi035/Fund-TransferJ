@@ -40,7 +40,7 @@
     	</fileset>
     </path>
     
-	<property name="artifact.group" value="Unit1" />
+	<property name="artifact.group" value="Fund-Transfer" />
 	<property name="artifact.name" value="my" />
     <property name="artifact.version" value="2.1.4" />
     <property name="artifact.type" value="war" />
