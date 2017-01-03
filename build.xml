@@ -139,16 +139,5 @@
         </junitreport> 
 		</target> 
 		
-	<distributionManagement>
-    <repository>
-        <id>instance-00c410bb</id>
-        <name>instance-00c410bb-releases</name>
-        <url>http://artifactorypoc.eu-gb.mybluemix.net/artifactory/Unit1</url>
-    </repository>
-    <snapshotRepository>
-        <id>instance-00c410bb</id>
-        <name>instance-00c410bb-snapshots</name>
-        <url>http://artifactorypoc.eu-gb.mybluemix.net/artifactory/Unit1</url>
-    </snapshotRepository>
-</distributionManagement>		
+			
 </project>
