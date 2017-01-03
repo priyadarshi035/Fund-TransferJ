@@ -33,7 +33,7 @@
 	     <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
     </condition>
-	<ivy:settings file="./ivysettings.xml" />
+	
 	
 	<property name="warname" value= "fundTransferJ.war"/>
     <path id="classpathDir">
@@ -48,13 +48,7 @@
     <property name="artifact.version" value="2.1.4" />
     <property name="artifact.type" value="war" />
 	<property name="artifact.pom" value="pom.xml" />-->
-	<target name="resolve">
-    <ivy:retrieve/>
-  </target>
 	
-	<target name="report" depends="resolve">
-    <ivy:report todir="${build.dir}"/>
-  </target>
     
     <target name="init">
         <mkdir dir="bin"/>
@@ -64,7 +58,7 @@
         <delete dir="bin"/>
 		<delete file="${ARCHIVE_DIR}/${warname}" />	
 	        </target>
-    <target name="build" depends="build-project,build-war,report"/>
+    <target name="build" depends="build-project,build-war"/>
     <target name="cleanall" depends="clean"/>
     <target name="build-project" depends="clean,init">
     	<copy todir="${ARCHIVE_DIR}">
@@ -90,10 +84,7 @@
 	  	<classes dir="bin"/>
 	  </war>
    </target>
-	<target name="publish" depends="build-war">
-    <ivy:publish resolver="publish" overwrite="true" artifactspattern="${ARCHIVE_DIR}/${warname}/[artifact].[ext]" />
-  </target>
-	<!--<target name="initarti">
+		<!--<target name="initarti">
                 <antcall target="deploy" />   
 		<antcall target="cleanpom" />
     </target>
