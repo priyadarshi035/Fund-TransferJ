@@ -6,8 +6,8 @@
   <resolvers>
     <chain name="main">
       <url name="public" m2compatible="false">
-        <artifact pattern="http://artifactorypoc.eu-gb.mybluemix.net/artifactory/libs-release/[organization]/[module]/[revision]/[type]s/[module](-[classifier])-[revision].[ext]" />
-        <ivy pattern="http://artifactorypoc.eu-gb.mybluemix.net/artifactory/libs-release/[organization]/[module]/[revision]/[type]s/ivy-[revision].xml" />
+        <artifact pattern="http://artifactorypoc.eu-gb.mybluemix.net/artifactory/Unit1/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
+        <ivy pattern="http://artifactorypoc.eu-gb.mybluemix.net/artifactory/Unit1/[organisation]/[module]/ivy-[revision].xml" />
       </url>
     </chain>
   </resolvers>
