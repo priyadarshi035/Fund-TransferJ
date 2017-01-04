@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="build" name="FundTransferJ">
 	<!--<path id="maven-ant-tasks.classpath" path="WebContent/WEB-INF/lib/maven-ant-tasks-2.1.3.jar" />
   <typedef resource="org/apache/maven/artifact/ant/antlib.xml"
