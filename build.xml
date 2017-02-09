@@ -26,12 +26,27 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
+	<property name="target.dir" value="target" />
+	<property name="classes.dir" value="${target.dir}/classes" />
+     <property name="instrumentedclasses.dir" value="${target.dir}/instrumentedclasses" />
+     <property name="testclasses.dir" value="${target.dir}/testclasses" />
 	<property name="reports.test" value="testreports" />
 	<property name="junit.output.dir" value="testreports"/>
 	<property name="test.dir" value="testsrc" />
+	<property name="cobertura.reports.dir" value="${reports.test}/cobertura" />
+     <property name="cobertura.datafile" value="${target.dir}/cobertura.ser" />
 	     <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
     </condition>
+	<path id="cobertura.classpath" description="classpath for instrumenting classes">
+          <pathelement location="${libs.dir}/cobertura-1.0.jar" />
+          <fileset dir="${libs.dir}">
+               <include name="cobertura-dependencies/*.jar" />
+          </fileset>
+     </path>
+ 
+     <!-- taskdefs -->
+     <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 	
 	
 	<property name="warname" value= "fundTransferJ.war"/>
@@ -51,9 +66,13 @@
     
     <target name="init">
         <mkdir dir="bin"/>
-	 <mkdir dir="build"/>   
+	 <mkdir dir="build"/>
+	    <mkdir dir="${target.dir}" />
+          <mkdir dir="${classes.dir}" />
+          <mkdir dir="${testclasses.dir}" />
+	    <mkdir dir="${cobertura.reports.dir}" />
 	       </target>
-    <target name="clean">
+	    <target name="clean">
         <delete dir="bin"/>
 		<delete file="${ARCHIVE_DIR}/${warname}" />	
 	        </target>
@@ -71,6 +90,15 @@
             <classpath refid="classpathDir"/>
         </javac>
     </target>
+	<target name="instrument.classes">
+          <cobertura-instrument todir="${instrumentedclasses.dir}" datafile="${cobertura.datafile}">
+               <includeclasses regex=".*" />
+               <instrumentationClasspath>
+                    <pathelement location="${classes.dir}" />
+               </instrumentationClasspath>
+          </cobertura-instrument>
+     </target>
+ 
  
    <target name="build-war" depends="build-project">
 	  <war destfile="${ARCHIVE_DIR}/${warname}" webxml="WebContent/WEB-INF/web.xml">
@@ -128,8 +156,10 @@
 	          <include name="**/Test_FirstSuiteRunner.java"/>
 	        </fileset>
 	      </batchtest>
-
+               <sysproperty key="net.sourceforge.cobertura.datafile" file="${cobertura.datafile}" />
+               <classpath refid="cobertura.classpath" />
 	    </junit>
+	   <cobertura-report format="html" destdir="${cobertura.reports.dir}" datafile="${cobertura.datafile}" srcdir="${src.dir}" />
 	    <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
                 <include name="TEST-*.xml"/>
