@@ -12,34 +12,10 @@
     <property name="reports.test" value="testreports" />
     <property name="junit.output.dir" value="testreports"/>
     <property name="test.dir" value="testsrc" />
-    <property name="lib.cobertura.dir" value="${libs.dir}" />
-    <property name="cobertura.jar.file" value="${libs.dir}/cobertura-1.0.jar" />
-    <property name="cob.ser.file" value="cobertura.ser" />
-	<property name="dest.dir" value="target" />
-  <property name="dest.dir.classes" value="${dest.dir}/classes" />
-  <property name="dest.dir.lib" value="${dest.dir.classes}/lib" />
-  <property name="package.file" value="${dest.dir}/${package.name}" />
-	
-  <property name="cobertura.dir" value="cobertura" />
-  <property name="cob.instrumented.dir" value="${cobertura.dir}/instrumented" />
-  <property name="cob.reports.dir" value="${cobertura.dir}/reports" />
-  <property name="cob.reports.xml.dir" value="${cob.reports.dir}/junit-xml" />
-  <property name="cob.reports.html.dir" value="${cob.reports.dir}/junit-html" />
-  <property name="cob.coverage.xml.dir" value="${cob.reports.dir}/cobertura-xml" />
-  <property name="cob.coverage.html.dir" value="${cob.reports.dir}/cobertura-html" />
-	
-	
-		     <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
+    <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
     </condition>
 	     <!-- taskdefs -->
-<path id="cobertura.classpath">
-      <fileset dir="${cobertura.dir}">
-        <include name="cobertura-1.0.jar" />
-        <include name="lib/**/*.jar" />
-      </fileset>
-</path>
-     <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
      <property name="warname" value= "fundTransferJ.war"/>
     <path id="classpathDir">
         <pathelement location="bin"/>
@@ -52,18 +28,21 @@
   <target name="init">
     <mkdir dir="bin"/>
     <mkdir dir="build"/>
-	<mkdir dir="cobertura"/>  
-    <mkdir dir="${cobertura.dir}" />
-    <mkdir dir="${cob.instrumented.dir}" />
-    <mkdir dir="${cob.reports.xml.dir}" />
-    <mkdir dir="${cob.reports.html.dir}" />
-    <mkdir dir="${cob.coverage.xml.dir}" />
-    <mkdir dir="${cob.coverage.html.dir}" />
-</target>
+	</target>
 	    <target name="clean">
         <delete dir="bin"/>
 		<delete file="${ARCHIVE_DIR}/${warname}" />	
 	        </target>
+	<property name="cobertura.dir" value="cobertura" />
+
+<path id="cobertura.classpath">
+    <fileset dir="${cobertura.dir}">
+        <include name="cobertura-1.0.jar" />
+        <include name="lib/**/*.jar" />
+    </fileset>
+</path>
+
+<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
     <target name="build" depends="build-project,build-war"/>
     <target name="cleanall" depends="clean"/>
     <target name="build-project" depends="clean,init">
@@ -91,15 +70,25 @@
 	  </war>
    </target>
 		    	
-   <target name="unit-test-2" depends="build-project,build-war,instrument"> 
+   <target name="unit-test-2" depends="build-project,build-war"> 
 	 
-
 	   <junit printsummary="yes" haltonfailure="yes">
-		   <classpath location="${cobertura.jar.file}"/>
-        <classpath location="${cob.instrumented.dir}"/>
+		<sysproperty key="net.sourceforge.cobertura.datafile"
+		file="${basedir}/cobertura.ser" />
+   <classpath location="${instrumented.dir}" />
+	<classpath location="${classes.dir}" />
+		   
       <classpath>
               <path refid="build.class.path"/>
         </classpath>
+		   <classpath refid="cobertura.classpath" />
+	                 <formatter type="xml" />
+	                 <test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
+	                  <batchtest todir="${reports.xml.dir}" unless="testcase">
+		                      <fileset dir="${src.dir}">
+			             <include name="**/*Test.java" />
+		                      </fileset>
+	                 </batchtest>
 	      <classpath>
 	        <pathelement location="${project.class.path}"/>
 	        <pathelement location="bin"/>
@@ -109,9 +98,7 @@
 	      	</fileset>
 	      	
 	      </classpath>
-	      
-			<formatter type="xml" />
-
+	      			<formatter type="xml" />
 	   	    <batchtest fork="yes" todir="testreports">
 			    <fileset dir="${cob.instrumented.dir}"></fileset>
 	        <fileset dir="${src.Dir}">
@@ -127,26 +114,14 @@
            <report format="frames" todir="testreports" />
         </junitreport> 
 		</target> 
-	<path id="cobertura.classpath">
-    <fileset dir="${libs.dir}">
-      <include name="${cobertura.jar.file}" />
-      <include name="**/*.jar" />
-    </fileset>
-  </path>
-    <taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
-  
-  <target name="instrument" depends="compile">
-    <cobertura-instrument todir="${cob.instrumented.dir}">
-      <fileset dir="${dest.dir.classes}">
-        <include name="**/*.class"/>
-      </fileset>
-    </cobertura-instrument>
-  </target>
-         <!-- run this target to generate the coverage reports -->
-  <target name="coverage-report" depends="unit-test-2">
-    <cobertura-report srcdir="${src.dir}" destdir="${cobertura.dir}"/>
-  </target>
+	<classpath refid="cobertura.classpath" />
 
-		
-		
+	<formatter type="xml" />
+	<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
+	<batchtest todir="${reports.xml.dir}" unless="testcase">
+		<fileset dir="${src.dir}">
+			<include name="**/*Test.java" />
+		</fileset>
+	</batchtest>
+	              
 </project>
