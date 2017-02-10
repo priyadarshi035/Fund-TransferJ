@@ -35,7 +35,7 @@
     	     </fileset>
          </path>
 
-	   <taskdef classpathref="classpathDir" resource="WebContent/WEB-INF/lib" />
+	   <taskdef classpath="classpathDir" resource="WebContent/WEB-INF/lib" />
 	
   <target name="init">
       <mkdir dir="bin"/>
