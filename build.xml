@@ -26,7 +26,15 @@
         <isset property="env.ARCHIVE_DIR" />
     </condition>
 
-    
+    <property name="cobertura.dir" value="cobertura" />
+<path id="cobertura.classpath">
+    <fileset dir="${cobertura.dir}">
+        <include name="cobertura-1.0.jar" />
+        <include name="**/**/lib/**/*.jar" />
+    </fileset>
+</path>
+
+
       <property name="warname" value= "fundTransferJ.war"/>
          <path id="classpathDir">
              <pathelement location="bin"/>
@@ -149,15 +157,14 @@
           <fileset dir="${cob.instrumented.dir}">
             <include name="**/Test*"/>
             <include name="**/*Tests*"/>
-            <include name="org/jaxen/javabean/*Test*" />
-          </fileset>
+                      </fileset>
           </batchtest>
     </junit>
   </target>
   
-  <!-- run this target to generate the coverage reports -->
+  
   <target name="coverage-report" depends="cover-test">
-    <cobertura-report srcdir="${src.dir}" destdir="${cobertura.dir}"/>
+    <cobertura-report srcdir="${test.dir}" destdir="${cobertura.dir}"/>
   </target>
 	              
 </project>
