@@ -28,7 +28,7 @@
 
     <property name="cobertura.dir" value="cobertura" />
        <path id="cobertura.classpath">
-         <fileset dir="${cobertura.dir}">
+         <fileset dir="${libs.dir}">
             <include name="cobertura-1.0.jar" />
             <include name="lib/**/*.jar" />
          </fileset>
@@ -42,7 +42,7 @@
         	  <include name="*.jar"/> 
     	     </fileset>
          </path>
-
+<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 	   
   <target name="init">
       <mkdir dir="bin"/>
@@ -147,7 +147,7 @@
            <report format="frames" todir="testreports" />
         </junitreport> 
 		</target> 
-	
+	<classpath refid="cobertura.classpath" />
 	<formatter type="xml" />
 	<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
 	<batchtest todir="${reports.xml.dir}" unless="testcase">
