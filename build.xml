@@ -150,7 +150,7 @@
 		
 	<target name="cover-test" depends="instrument">
            <junit dir="./" failureproperty="test.failure" printsummary="yes" fork="true" haltonerror="true">
-        <classpath location="${cobertura.jar.file}"/>
+        <classpath location="cobertura-1.0.jar"/>
         <classpath location="${cob.instrumented.dir}"/>
      
       <batchtest fork="yes" todir="${reports.dir}">
