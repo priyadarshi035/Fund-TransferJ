@@ -111,10 +111,7 @@
 			             <include name="**/*Test.java" />
 		                      </fileset>
 	                 </batchtest>
-		   <classpath>
-              <path refid="build.class.path"/>
-        </classpath>
-		  
+		   		  
 	      <classpath>
 	        <pathelement location="${project.class.path}"/>
 	        <pathelement location="bin"/>
@@ -147,9 +144,7 @@
            <junit dir="./" failureproperty="test.failure" printsummary="yes" fork="true" haltonerror="true">
         <classpath location="${cobertura.jar.file}"/>
         <classpath location="${cob.instrumented.dir}"/>
-      <classpath>
-              <path refid="build.class.path"/>
-        </classpath>
+     
       <batchtest fork="yes" todir="${reports.dir}">
           <fileset dir="${cob.instrumented.dir}">
             <include name="**/Test*"/>
