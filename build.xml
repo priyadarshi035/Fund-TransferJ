@@ -28,12 +28,11 @@
 
     <property name="cobertura.dir" value="cobertura" />
        <path id="cobertura.classpath">
-         <fileset dir="${libs.dir}">
+         <fileset dir="WebContent/WEB-INF/lib">
             <include name="cobertura-1.0.jar" />
-            <include name="lib/**/*.jar" />
-         </fileset>
+            </fileset>
        </path>
- 
+ <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 	
      <property name="warname" value= "fundTransferJ.war"/>
          <path id="classpathDir">
@@ -42,7 +41,7 @@
         	  <include name="*.jar"/> 
     	     </fileset>
          </path>
-<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
+
 	   
   <target name="init">
       <mkdir dir="bin"/>
