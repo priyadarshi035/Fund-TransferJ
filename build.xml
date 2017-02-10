@@ -52,6 +52,7 @@
   <target name="init">
     <mkdir dir="bin"/>
     <mkdir dir="build"/>
+	<mkdir dir="cobertura"/>  
     <mkdir dir="${cobertura.dir}" />
     <mkdir dir="${cob.instrumented.dir}" />
     <mkdir dir="${cob.reports.xml.dir}" />
