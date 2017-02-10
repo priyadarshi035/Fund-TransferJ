@@ -33,7 +33,7 @@
             <include name="lib/**/*.jar" />
          </fileset>
        </path>
-  <taskdef classpathref="cobertura.classpath" />
+ 
 	
      <property name="warname" value= "fundTransferJ.war"/>
          <path id="classpathDir">
