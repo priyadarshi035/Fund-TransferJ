@@ -26,15 +26,8 @@
         <isset property="env.ARCHIVE_DIR" />
     </condition>
 
-    <property name="cobertura.dir" value="cobertura" />
-       <path id="cobertura.classpath">
-         <fileset dir="WebContent/WEB-INF/lib">
-            <include name="cobertura-1.0.jar" />
-            </fileset>
-       </path>
- <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
-	
-     <property name="warname" value= "fundTransferJ.war"/>
+    
+      <property name="warname" value= "fundTransferJ.war"/>
          <path id="classpathDir">
              <pathelement location="bin"/>
              <fileset dir="WebContent/WEB-INF/lib"> 
@@ -42,7 +35,8 @@
     	     </fileset>
          </path>
 
-	   
+	   <taskdef classpathref="classpathDir" resource="tasks.properties" />
+	
   <target name="init">
       <mkdir dir="bin"/>
       <mkdir dir="build"/>
@@ -109,7 +103,7 @@
         
 		   
 
-        <classpath refid="cobertura.classpath" />
+        <classpath refid="classpathDir" />
 	      <formatter type="xml" />
 	                 <test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
 	                  <batchtest todir="${reports.xml.dir}" unless="testcase">
