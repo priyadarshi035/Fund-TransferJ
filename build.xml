@@ -34,7 +34,7 @@
         	  <include name="*.jar"/> 
     	     </fileset>
          </path>
-
+<taskdef classpathref="classpathDir" resource="tasks.properties" />
 	   
 	
   <target name="init">
