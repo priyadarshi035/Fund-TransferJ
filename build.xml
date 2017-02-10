@@ -33,7 +33,13 @@
         <isset property="env.ARCHIVE_DIR" />
     </condition>
 	     <!-- taskdefs -->
-     <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />	
+<path id="cobertura.classpath">
+      <fileset dir="${cobertura.dir}">
+        <include name="cobertura-1.0.jar" />
+        <include name="lib/**/*.jar" />
+      </fileset>
+</path>
+     <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
      <property name="warname" value= "fundTransferJ.war"/>
     <path id="classpathDir">
         <pathelement location="bin"/>
@@ -42,23 +48,17 @@
     	</fileset>
     </path>
     
-	<!--<property name="artifact.group" value="Fund-Transfer" />
-	<property name="artifact.name" value="my" />
-    <property name="artifact.version" value="2.1.4" />
-    <property name="artifact.type" value="war" />
-	<property name="artifact.pom" value="pom.xml" />-->
-	
-    
-    <target name="init">
-        <mkdir dir="bin"/>
-	 <mkdir dir="build"/>
-	    <mkdir dir="${cobertura.dir}" />
+	   
+  <target name="init">
+    <mkdir dir="bin"/>
+    <mkdir dir="build"/>
+    <mkdir dir="${cobertura.dir}" />
     <mkdir dir="${cob.instrumented.dir}" />
     <mkdir dir="${cob.reports.xml.dir}" />
     <mkdir dir="${cob.reports.html.dir}" />
     <mkdir dir="${cob.coverage.xml.dir}" />
     <mkdir dir="${cob.coverage.html.dir}" />
-	    	       </target>
+</target>
 	    <target name="clean">
         <delete dir="bin"/>
 		<delete file="${ARCHIVE_DIR}/${warname}" />	
@@ -89,30 +89,7 @@
 	  	<classes dir="bin"/>
 	  </war>
    </target>
-		<!--<target name="initarti">
-                <antcall target="deploy" />   
-		<antcall target="cleanpom" />
-    </target>
-	   
-	<target name="deploy" >
-      <artifact:pom id="tmp.pom" groupid="${artifact.group}" artifactid="${artifact.name}" version="${artifact.version}" packaging="${artifact.type}" name="${artifact.name}"/>
-	      	           <artifact:writepom pomRefId="tmp.pom" file="${artifact.pom}" trim="false"/>
-        <artifact:deploy file="fundTransferJ.war">
-			            <remoteRepository url="${remote.repo.url}">
-                <authentication username="${remote.repo.username}" password="${remote.repo.password}" />
-            </remoteRepository>
-            <attach file="${build.dir}/.sonar/issues-report/issues-report.html" classifier="sonar" type="html"/>-->
-            <!--<attach file="${build.dir}/${artifact.name}-${artifact.version}-prod.properties" classifier="config-prod" type="properties"/>
-            <attach file="${build.dir}/${artifact.name}-${artifact.version}-test.properties" classifier="config-test" type="properties"/>-->
-           <!--<pom file="${artifact.pom}" />           
-       </artifact:deploy>
-    </target>-->
-     
-    <!-- clean-task for deletion of an earlier created temporary pom-file-->
-	<!--<target name="cleanpom">
-        <delete file="${artifact.pom}" />
-    </target>-->
-    	
+		    	
    <target name="unit-test-2" depends="build-project,build-war,instrument"> 
 	 
 
