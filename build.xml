@@ -12,7 +12,7 @@
     <property name="reports.test" value="testreports" />
     <property name="junit.output.dir" value="testreports"/>
     <property name="test.dir" value="testsrc" />
-<!------------------------------------------------------------------------>
+
     <property name="cobertura.dir" value="cobertura" />
     <property name="cob.instrumented.dir" value="${cobertura.dir}/instrumented" />
     <property name="cob.reports.dir" value="${cobertura.dir}/reports" />
@@ -25,7 +25,7 @@
     <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
     </condition>
-<!-------------------------------- taskdefs --------------------------------->
+
     <property name="cobertura.dir" value="cobertura" />
        <path id="cobertura.classpath">
          <fileset dir="${cobertura.dir}">
@@ -42,7 +42,7 @@
         	  <include name="*.jar"/> 
     	     </fileset>
          </path>
-<!-----------------------targets------------------------------------> 
+
 	   
   <target name="init">
       <mkdir dir="bin"/>
@@ -102,16 +102,16 @@
 		    	
    <target name="unit-test-2" depends="build-project,build-war"> 
 	   <junit printsummary="yes" haltonfailure="yes">
-		   <!----------cobertura----------->
+		  
 	      <sysproperty key="net.sourceforge.cobertura.datafile" file="${basedir}/cobertura.ser" />
               <classpath location="${instrumented.dir}" />
 	      <classpath location="${classes.dir}" />
-<!----------------------junit----------------------------------->	   
+	   
         <classpath>
               <path refid="build.class.path"/>
         </classpath>
 		   
-<!-------------------------------------------------------------------->
+
         <classpath refid="cobertura.classpath" />
 	      <formatter type="xml" />
 	                 <test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
@@ -121,7 +121,7 @@
 		                      </fileset>
 	                 </batchtest>
 		   
-		   <!---------------------------->
+		  
 	      <classpath>
 	        <pathelement location="${project.class.path}"/>
 	        <pathelement location="bin"/>
@@ -130,7 +130,7 @@
 	      	        	<include name="*.jar"/> 
 	      	</fileset>
 	      		      </classpath>
-		   <!-------------------------------------->
+		  
 	      			<formatter type="xml" />
 	   	    <batchtest fork="yes" todir="testreports">
 			    <fileset dir="${cob.instrumented.dir}"></fileset>
