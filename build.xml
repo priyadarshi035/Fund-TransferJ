@@ -147,8 +147,7 @@
            <report format="frames" todir="testreports" />
         </junitreport> 
 		</target> 
-	<classpath refid="cobertura.classpath" />
-
+	
 	<formatter type="xml" />
 	<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
 	<batchtest todir="${reports.xml.dir}" unless="testcase">
