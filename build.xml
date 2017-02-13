@@ -11,7 +11,19 @@
 	<property name="reports.test" value="testreports" />
 	<property name="junit.output.dir" value="testreports"/>
 	<property name="test.dir" value="testsrc" />
+	<property name="classes.dir" value="bin/com/ibm/bluemix" />
+	<property name="instrumented.dir" value="instrument"/>
+	<property name="cob.ser.file" value="cobertura.ser" />
+	
 	<property name="cobertura.dir" value="cobertura" />
+	<path id="cobertura.classpath">
+    <fileset dir="${cobertura.dir}">
+        <include name="cobertura-1.0.jar" />
+        <include name="WebContent/WEB-INF/lib/**/*.jar" />
+    </fileset>
+</path>
+
+<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 
 	     <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
@@ -23,12 +35,23 @@
         	<include name="*.jar"/> 
     	</fileset>
     </path>
-    	   
+    	   <cobertura-instrument todir="${instrumented.dir}">
+    <ignore regex="org.apache.log4j.*" />
+    <fileset dir="${classes.dir}">
+        <include name="**/*.class" />
+        <exclude name="**/*Test.class" />
+    </fileset>
+		   </cobertura-instrument>
     <target name="init">
         <mkdir dir="bin"/>
+	 <mkdir dir="cobertura"/>
+	   <mkdir dir="instrument"/>
+	    <mkfile file="cobertura.ser"/>
+	    
 	       </target>
     <target name="clean">
         <delete dir="bin"/>
+	    <delete file="cobertura.ser" />
 		<delete file="${ARCHIVE_DIR}/${warname}" />	
 	        </target>
     <target name="build" depends="build-project,build-war"/>
@@ -61,6 +84,8 @@
    <target name="unit-test-2" depends="build-project,build-war"> 
 	 
 	   <junit printsummary="yes" haltonfailure="yes">
+		   
+		   
 	      <classpath>
 	        <pathelement location="${project.class.path}"/>
 	        <pathelement location="bin"/>
@@ -70,6 +95,14 @@
 	      	</fileset>
 	      	
 	      </classpath>
+		   <sysproperty key="net.sourceforge.cobertura.datafile"
+        file="${basedir}/cobertura.ser" />
+
+       <classpath location="${instrumented.dir}" />
+    <classpath location="${classes.dir}" />
+
+    
+    <classpath refid="cobertura_classpath" />
 	      			<formatter type="xml" />
 
 	   	    <batchtest fork="yes" todir="testreports">
@@ -85,6 +118,7 @@
            <report format="frames" todir="testreports" />
         </junitreport> 
 		</target> 
+		   <cobertura-report format="xml" destdir="testreports" srcdir="${src.dir}" />
 		
 	
 		
