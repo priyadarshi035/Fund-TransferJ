@@ -1,125 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="build" name="FundTransferJ">
-	
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" basedir="." default="build" name="FundTransferJ">
+
     <property environment="env"/>
-    <property name="build.dir" value="." />
-    <property name="libs.dir" value="WebContent/WEB-INF/lib" />
-    <property name="src.Dir" value="src"/>
+	<!-- directory-properties -->
+        <property name="libs.dir" value="WebContent/WEB-INF/lib" />
+               <property name="src.Dir" value="src"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
-    <property name="target.dir" value="target" />
-    <property name="reports.test" value="testreports" />
-    <property name="junit.output.dir" value="testreports"/>
-    <property name="test.dir" value="testsrc" />
+	<property name="reports.test" value="testreports" />
+	<property name="junit.output.dir" value="testreports"/>
+	<property name="test.dir" value="testsrc" />
+	<property name="cobertura.dir" value="cobertura" />
 
-    <property name="cobertura.dir" value="cobertura" />
-    <property name="cob.instrumented.dir" value="${cobertura.dir}/instrumented" />
-    <property name="cob.reports.dir" value="${cobertura.dir}/reports" />
-    <property name="cob.reports.xml.dir" value="${cob.reports.dir}/junit-xml" />
-    <property name="cob.reports.html.dir" value="${cob.reports.dir}/junit-html" />
-    <property name="cob.coverage.xml.dir" value="${cob.reports.dir}/cobertura-xml" />
-    <property name="cob.coverage.html.dir" value="${cob.reports.dir}/cobertura-html" />
-
-	
-    <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
+	     <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
     </condition>
-
-    <property name="cobertura.dir" value="cobertura" />
-<path id="cobertura.classpath">
-    <fileset dir="${cobertura.dir}">
-        <include name="cobertura-1.0.jar" />
-        <include name="**/**/lib/**/*.jar" />
-    </fileset>
-</path>
-
-
-      <property name="warname" value= "fundTransferJ.war"/>
-         <path id="classpathDir">
-             <pathelement location="bin"/>
-             <fileset dir="WebContent/WEB-INF/lib"> 
-        	  <include name="*.jar"/> 
-    	     </fileset>
-         </path>
-
-	   
-	
-  <target name="init">
-      <mkdir dir="bin"/>
-      <mkdir dir="build"/>
-      <mkdir dir="${cobertura.dir}" />
-      <mkdir dir="${cob.instrumented.dir}" />
-      <mkdir dir="${cob.reports.xml.dir}" />
-      <mkdir dir="${cob.reports.html.dir}" />
-      <mkdir dir="${cob.coverage.xml.dir}" />
-      <mkdir dir="${cob.coverage.html.dir}" />
-  </target>
-	
-  <target name="clean">
-	  
+	<property name="warname" value= "fundTransferJ.war"/>
+    <path id="classpathDir">
+        <pathelement location="bin"/>
+         <fileset dir="WebContent/WEB-INF/lib"> 
+        	<include name="*.jar"/> 
+    	</fileset>
+    </path>
+    	   
+    <target name="init">
+        <mkdir dir="bin"/>
+	       </target>
+    <target name="clean">
         <delete dir="bin"/>
-	<delete file="${ARCHIVE_DIR}/${warname}" />
-	<delete dir="${dest.dir}" />
-        <delete dir="${reports.dir}" />
-        <delete dir="${cobertura.dir}" />
-        <delete file="${cob.ser.file}" />
-  </target>
-	  
-  <target name="build" depends="build-project,build-war"/>
-  <target name="cleanall" depends="clean"/>
-  <target name="build-project" depends="clean,init">
-        <copy todir="${ARCHIVE_DIR}">
+		<delete file="${ARCHIVE_DIR}/${warname}" />	
+	        </target>
+    <target name="build" depends="build-project,build-war"/>
+    <target name="cleanall" depends="clean"/>
+    <target name="build-project" depends="clean,init">
+    	<copy todir="${ARCHIVE_DIR}">
 	      <fileset file="manifest.yml" />
-        </copy>
+	    </copy>
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}" includeantruntime="false">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}"
+		includeantruntime="false">
             <src path="src"/>
             <src path="testsrc"/>
             <classpath refid="classpathDir"/>
-         </javac>
-   </target>
-	
-   <target name="build-war" depends="build-project">
-       <war destfile="${ARCHIVE_DIR}/${warname}" webxml="WebContent/WEB-INF/web.xml">
-	  <webinf dir="WebContent/WEB-INF">
-	  	<include name="resources"/>
-	   </webinf>
-	   <fileset dir="WebContent">
-	  	<include name="**/*"/>
-	    </fileset>
-	    <classes dir="bin"/>
-	</war>
-   </target>
-	
-    <target name="instrument" depends="build">
-        <cobertura-instrument todir="${cob.instrumented.dir}">
-            <fileset dir="${dest.dir.classes}">
-            <include name="**/*.class"/>
-            </fileset>
-        </cobertura-instrument>
+        </javac>
     </target>
-
-		    	
+ 
+   <target name="build-war" depends="build-project">
+	  <war destfile="${ARCHIVE_DIR}/${warname}" webxml="WebContent/WEB-INF/web.xml">
+	  	<webinf dir="WebContent/WEB-INF">
+	  		<include name="resources"/>
+	    </webinf>
+	  	<fileset dir="WebContent">
+	  		<include name="**/*"/>
+	    </fileset>
+	  	<classes dir="bin"/>
+	  </war>
+   </target>
+    	
    <target name="unit-test-2" depends="build-project,build-war"> 
+	 
 	   <junit printsummary="yes" haltonfailure="yes">
-		  
-	      <sysproperty key="net.sourceforge.cobertura.datafile" file="${basedir}/cobertura.ser" />
-              <classpath location="${instrumented.dir}" />
-	      <classpath location="${classes.dir}" />
-	   
-        
-		   
-
-        <classpath refid="classpathDir" />
-	      <formatter type="xml" />
-	                 <test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
-	                  <batchtest todir="${reports.xml.dir}" unless="testcase">
-		                      <fileset dir="${src.dir}">
-			             <include name="**/*Test.java" />
-		                      </fileset>
-	                 </batchtest>
-		   		  
 	      <classpath>
 	        <pathelement location="${project.class.path}"/>
 	        <pathelement location="bin"/>
@@ -127,44 +68,24 @@
 	      	<fileset dir="WebContent/WEB-INF/lib"> 
 	      	        	<include name="*.jar"/> 
 	      	</fileset>
-	      		      </classpath>
-		  
+	      	
+	      </classpath>
 	      			<formatter type="xml" />
+
 	   	    <batchtest fork="yes" todir="testreports">
-			    <fileset dir="${cob.instrumented.dir}"></fileset>
 	        <fileset dir="${src.Dir}">
-			
 	          <include name="**/Test_FirstSuiteRunner.java"/>
 	        </fileset>
 	      </batchtest>
-               	    </junit>
-	  	    <junitreport todir="${junit.output.dir}">
+	    </junit>
+	    <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
                 <include name="TEST-*.xml"/>
             </fileset>
            <report format="frames" todir="testreports" />
         </junitreport> 
 		</target> 
-	
+		
 	
 		
-	<target name="cover-test" depends="instrument">
-           <junit dir="./" failureproperty="test.failure" printsummary="yes" fork="true" haltonerror="true">
-        <classpath location="cobertura-1.0.jar"/>
-        <classpath location="${cob.instrumented.dir}"/>
-     
-      <batchtest fork="yes" todir="${reports.dir}">
-          <fileset dir="${cob.instrumented.dir}">
-            <include name="**/Test*"/>
-            <include name="**/*Tests*"/>
-                      </fileset>
-          </batchtest>
-    </junit>
-  </target>
-  
-  
-  <target name="coverage-report" depends="cover-test">
-    <cobertura-report srcdir="${test.dir}" destdir="${cobertura.dir}"/>
-  </target>
-	              
 </project>
