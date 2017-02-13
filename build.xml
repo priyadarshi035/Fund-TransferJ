@@ -44,7 +44,7 @@
 		   </cobertura-instrument>
     <target name="init">
         <mkdir dir="bin"/>
-	 <mkdir dir="cobertura"/>
+	 
 	   <mkdir dir="instrument"/>
 	    <mkfile file="cobertura.ser"/>
 	    
