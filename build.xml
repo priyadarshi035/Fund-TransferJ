@@ -119,9 +119,10 @@
             </fileset>
            <report format="frames" todir="testreports" />
         </junitreport> 
-		</target> 
+		</target>
+	<target name="coverage-results" >
 		   <cobertura-report format="xml" destdir="testreports" srcdir="${src.dir}" />
 		
-	
+	</target>
 		
 </project>
