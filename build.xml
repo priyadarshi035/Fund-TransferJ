@@ -4,20 +4,21 @@
     <property environment="env"/>
 	<!-- directory-properties -->
         <property name="libs.dir" value="WebContent/WEB-INF/lib" />
-               <property name="src.Dir" value="src"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
+        <property name="src.Dir" value="src"/>
+        <property name="debuglevel" value="source,lines,vars"/>
+        <property name="target" value="1.7"/>
+        <property name="source" value="1.7"/>
 	<property name="reports.test" value="testreports" />
 	<property name="junit.output.dir" value="testreports"/>
 	<property name="test.dir" value="testsrc" />
 	<property name="classes.dir" value="bin/com/ibm/bluemix" />
 	<property name="instrumented.dir" value="instrument"/>
 	<property name="cob.ser.file" value="cobertura.ser" />
-	
 	<property name="cobertura.dir" value="cobertura" />
-	<path id="cobertura.classpath">
-    <fileset dir="${cobertura.dir}">
+	
+	
+<path id="cobertura.classpath">
+     <fileset dir="${cobertura.dir}">
         <include name="cobertura-1.0.jar" />
         <include name="WebContent/WEB-INF/lib/**/*.jar" />
     </fileset>
@@ -25,32 +26,29 @@
 
 <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 
-	     <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
+	<condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
-    </condition>
+        </condition>
 	<property name="warname" value= "fundTransferJ.war"/>
-    <path id="classpathDir">
-        <pathelement location="bin"/>
+         <path id="classpathDir">
+         <pathelement location="bin"/>
          <fileset dir="WebContent/WEB-INF/lib"> 
         	<include name="*.jar"/> 
-    	</fileset>
-    </path>
+    	 </fileset>
+        </path>
 	<target name="instrument" depends="build">
     	   <cobertura-instrument todir="${instrumented.dir}">
-    <ignore regex="org.apache.log4j.*" />
-    <fileset dir="${classes.dir}">
-        <include name="**/*.class" />
-        <exclude name="**/*Test.class" />
-    </fileset>
-		   </cobertura-instrument>
-	</target>    
+                  <fileset dir="${classes.dir}">
+                  <include name="**/*.class" />
+                  </fileset>
+           </cobertura-instrument>
+	</target>
+	
     <target name="init">
         <mkdir dir="bin"/>
-	 
-	   <mkdir dir="instrument"/>
-	    
-	    
-	       </target>
+	
+    </target>
+	
     <target name="clean">
         <delete dir="bin"/>
 	    <delete file="cobertura.ser" />
