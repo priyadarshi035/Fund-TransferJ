@@ -35,6 +35,7 @@
         	<include name="*.jar"/> 
     	</fileset>
     </path>
+	<target name="instrument" depends="build">
     	   <cobertura-instrument todir="${instrumented.dir}">
     <ignore regex="org.apache.log4j.*" />
     <fileset dir="${classes.dir}">
@@ -42,6 +43,7 @@
         <exclude name="**/*Test.class" />
     </fileset>
 		   </cobertura-instrument>
+	</target>    
     <target name="init">
         <mkdir dir="bin"/>
 	 
