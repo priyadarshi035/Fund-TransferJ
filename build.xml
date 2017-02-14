@@ -20,11 +20,11 @@
 <path id="cobertura.classpath">
      <fileset dir="${cobertura.dir}">
         <include name="cobertura-1.9.2.jar" />
-        <include name="WebContent/WEB-INF/lib/**/*.jar" />
+        <include name="WebContent/WEB-INF/lib/*.jar" />
     </fileset>
 </path>
 
-<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
+<taskdef classpath="WebContent/WEB-INF/lib/cobertura-1.9.2.jar" resource="tasks.properties" />
 
 	<condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
