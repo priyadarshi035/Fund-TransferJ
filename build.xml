@@ -48,7 +48,7 @@
         <mkdir dir="bin"/>
 	 
 	   <mkdir dir="instrument"/>
-	    <mkfile file="cobertura.ser"/>
+	    
 	    
 	       </target>
     <target name="clean">
