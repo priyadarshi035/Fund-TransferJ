@@ -150,7 +150,11 @@
   <prerequisites>
     <maven>${maven.version}</maven>
   </prerequisites>
-
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
+<sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
+</properties>
   <!--bootstrap-start-comment-->
   <dependencyManagement>
     <!--bootstrap-end-comment-->
