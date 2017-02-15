@@ -37,8 +37,9 @@
         </path>
 	<target name="instrument" depends="build">
     	   <cobertura-instrument todir="${instrumented.dir}">
+		   <ignore regex="org.apache.log4j.*" />
 		                     <fileset dir="${classes.dir}">
-					     <ignore regex="org.apache.log4j.*" />
+					   
                   <include name="**/*.class" />
                   </fileset>
            </cobertura-instrument>
