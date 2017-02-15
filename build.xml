@@ -16,7 +16,7 @@
 	<property name="cob.ser.file" value="cobertura.ser" />
 	<property name="cobertura.dir" value="cobertura" />
 	
-	<path id="cobertura.classpath">
+	<path id="cobertura.classpath" >
     <fileset dir="WebContent/WEB-INF/lib">
         <include name="cobertura-1.9.2.jar" />
         <include name="*.jar" />
@@ -39,8 +39,8 @@
     	   <cobertura-instrument todir="${instrumented.dir}">
 		   <ignore regex="org.apache.log4j.*" />
 		                     <fileset dir="${classes.dir}">
-					   
-                  <include name="**/*.class" />
+				 
+                  <include name="/**/*.class" />
                   </fileset>
            </cobertura-instrument>
 	</target>
