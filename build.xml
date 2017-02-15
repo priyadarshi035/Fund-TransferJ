@@ -18,9 +18,10 @@
 	
 	<path id="cobertura.classpath" >
     <fileset dir="WebContent/WEB-INF/lib">
-        <include name="cobertura-1.9.2.jar" />
+        <include name="cobertura-2.1.1.jar" />
         <include name="*.jar" />
     </fileset>
+   <pathelement location="${libs.dir}/log4j-1.2.15.jar" />
 </path>
 
 <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
