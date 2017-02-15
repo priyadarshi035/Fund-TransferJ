@@ -16,16 +16,14 @@
 	<property name="cob.ser.file" value="cobertura.ser" />
 	<property name="cobertura.dir" value="cobertura" />
 	
-	
-<path id="cobertura.classpath">
-     <fileset dir="${cobertura.dir}">
+	<path id="cobertura.classpath">
+    <fileset dir="WebContent/WEB-INF/lib">
         <include name="cobertura-1.9.2.jar" />
-	     <include name="log4j-1.2.15.jar"/>
         <include name="*.jar" />
     </fileset>
 </path>
 
-<taskdef classpathref="WebContent/WEB-INF/lib/cobertura-1.9.2.jar" resource="tasks.properties" />
+<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 
 	<condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
@@ -40,6 +38,7 @@
 	<target name="instrument" depends="build">
     	   <cobertura-instrument todir="${instrumented.dir}">
 		                     <fileset dir="${classes.dir}">
+					     <ignore regex="org.apache.log4j.*" />
                   <include name="**/*.class" />
                   </fileset>
            </cobertura-instrument>
@@ -50,9 +49,9 @@
 	
     </target>
 	
-    <target name="clean">
-        <delete dir="bin"/>
-	    <delete file="cobertura.ser" />
+                <target name="clean">
+                <delete dir="bin"/>
+	        <delete file="cobertura.ser" />
 		<delete file="${ARCHIVE_DIR}/${warname}" />	
 	        </target>
     <target name="build" depends="build-project,build-war"/>
@@ -62,8 +61,7 @@
 	      <fileset file="manifest.yml" />
 	    </copy>
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}"
-		includeantruntime="false">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}" includeantruntime="false">
             <src path="src"/>
             <src path="testsrc"/>
             <classpath refid="classpathDir"/>
@@ -74,7 +72,7 @@
 	  <war destfile="${ARCHIVE_DIR}/${warname}" webxml="WebContent/WEB-INF/web.xml">
 	  	<webinf dir="WebContent/WEB-INF">
 	  		<include name="resources"/>
-	    </webinf>
+	         </webinf>
 	  	<fileset dir="WebContent">
 	  		<include name="**/*"/>
 	    </fileset>
