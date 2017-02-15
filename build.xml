@@ -20,11 +20,12 @@
 <path id="cobertura.classpath">
      <fileset dir="${cobertura.dir}">
         <include name="cobertura-1.9.2.jar" />
+	     <include name="log4j-1.2.15.jar"/>
         <include name="*.jar" />
     </fileset>
 </path>
 
-<taskdef classpath="WebContent/WEB-INF/lib/cobertura-1.9.2.jar" resource="tasks.properties" />
+<taskdef classpathref="WebContent/WEB-INF/lib/cobertura-1.9.2.jar" resource="tasks.properties" />
 
 	<condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
