@@ -9,7 +9,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	     
 	     //Integration_Security.class,
 	      //Hsbc.class,
-	TestBank.class,
+	//TestBank.class,
+	LoginJunitTest.class,
 })
 public class Test_FirstSuiteRunner {
 
