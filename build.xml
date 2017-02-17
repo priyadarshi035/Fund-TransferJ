@@ -8,7 +8,7 @@
     <property name="source" value="1.7"/>
 	<property name="reports.test" value="testreports" />
 	<property name="junit.output.dir" value="testreports"/>
-	<property name="test.dir" value="testsrc" />
+	<property name="test.dir" value="testsrc/com/ibm/bluemix/test" />
 	     <condition property="ARCHIVE_DIR" value="${env.ARCHIVE_DIR}" else=".">
         <isset property="env.ARCHIVE_DIR" />
     </condition>
@@ -97,7 +97,7 @@
 	 
 
 	   <junit printsummary="yes" haltonfailure="yes">
-	      <classpath>
+		<classpath>
 	        <pathelement location="${project.class.path}"/>
 	        <pathelement location="bin/test"/>
 	        <pathelement path="${java.class.path}"/>
@@ -106,7 +106,7 @@
 	      	</fileset>
 	      	
 	      </classpath>
-	      
+	      	      
 			<formatter type="xml" />
 
 	   	    <batchtest fork="yes" todir="testreports">
