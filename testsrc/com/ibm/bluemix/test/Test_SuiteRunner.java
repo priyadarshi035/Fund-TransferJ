@@ -11,6 +11,6 @@ import org.junit.runners.Suite.SuiteClasses;
 	      //Hsbc.class,
 LoginJunitTest.class,
 })
-public class Test1_FirstSuiteRunner {
+public class Test_SuiteRunner {
 
 }
