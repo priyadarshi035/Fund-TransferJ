@@ -99,7 +99,7 @@
 	   <junit printsummary="yes" haltonfailure="yes">
 		<classpath>
 	        <pathelement location="${project.class.path}"/>
-	        <pathelement location="bin/test"/>
+	        <pathelement location="bin/com/ibm/bluemix/test/"/>
 	        <pathelement path="${java.class.path}"/>
 	      	<fileset dir="WebContent/WEB-INF/lib"> 
 	      	        	<include name="*.jar"/> 
