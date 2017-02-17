@@ -89,7 +89,7 @@
 		</target>
 	
 		
-	Test1_FirstSuiteRunner.java
+	
 		
 	
 	
@@ -111,7 +111,7 @@
 
 	   	    <batchtest fork="yes" todir="testreports">
 	        <fileset dir="${test.dir}">
-	          <include name="**/Test1_FirstSuiteRunner.java"/>
+	          <include name="**/Test_SuiteRunner.java"/>
 	        </fileset>
 			  
 	      </batchtest>
