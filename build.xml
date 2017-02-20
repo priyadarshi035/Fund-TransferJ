@@ -89,7 +89,42 @@
 		</target>
 	
 		
-	
+	<target name="unit-test-3" depends="build-project,build-war"> 
+		 
+
+		   <junit fork="yes" failureProperty="test.failed" printsummary="yes" haltonfailure="yes">
+			
+		      <classpath>
+		      
+		    	 <pathelement location="${project.class.path}"/>
+		        <pathelement location="bin"/>
+		        <pathelement path="${java.class.path}"/>
+		      	
+		      	<fileset dir="WebContent/WEB-INF/lib"> 
+		      	        	<include name="*.jar"/> 
+		      	</fileset>
+		      	
+		      </classpath>
+		   
+		   	   	    
+		   	    	      
+				<formatter type="xml" />
+
+		   	    <batchtest fork="yes" todir="testreports">
+		        <fileset dir="testsrc">
+		        	<include name="**/**/*.java"/>
+		        </fileset>
+		      </batchtest>
+
+		    </junit>
+		    <junitreport todir="${junit.output.dir}">
+	            <fileset dir="${junit.output.dir}">
+	                <include name="TEST-*.xml"/>
+	            </fileset>
+	           <report format="frames" todir="testreports" />
+	        </junitreport> 
+			</target> 
+			
 		
 	
 	
