@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 <Targets>
-<Target path="C:\Users\IBM_ADMIN\Desktop\Tool_Usage_Metrics"/>
+<Target path="/data/workspace/Demo-Appscan/appscan-config.xml"/>
 </Targets>
 </Configuration>
