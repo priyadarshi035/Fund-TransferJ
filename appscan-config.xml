@@ -5,6 +5,6 @@
 </Targets>
  <TargetSettings>
   <Target path="$WORKSPACE/fundTransferJ.war"/>
-  </Target>
+  
  </TargetSettings>
 </Configuration>
