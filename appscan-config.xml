@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 <Targets>
-<Target outputs-only="true" path="$WORKSPACE/*.war"/>
- 
+<Target outputs-only="true" path="$WORKSPACE"/>
 </Targets>
+ <TargetSettings>
+  <Target path="$WORKSPACE/fundTransferJ.war"/>
+  </Target>
 </Configuration>
