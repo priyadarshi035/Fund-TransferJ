@@ -4,6 +4,6 @@
 <Target path="$WORKSPACE"/>
 </Targets>
  <TargetSettings>
-  <Target path="$WORKSPACE/fundTransferJ.war"/>
+  <Target path="/data/workspace/Blueberry/Test-Appscan/fundTransferJ.war"/>
  </TargetSettings>
 </Configuration>
