@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 <Targets>
-<Target outputs-only="true" path="/data/workspace/Demo-Appscan"/>
+<Target outputs-only="true" path="$WORKSPACE/*.war"/>
  
 </Targets>
 </Configuration>
