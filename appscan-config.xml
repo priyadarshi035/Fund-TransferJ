@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 <Targets>
-<Target path="/data/workspace/Blueberry/Test-Appscan"/>
+<Target path="$WORKSPACE/Test-Appscan"/>
 </Targets>
  <TargetSettings>
-  <Target path="/data/workspace/Blueberry/Test-Appscan/fundTransferJ.war"/>
+  <Target path="$WORKSAPCE/fundTransferJ.war"/>
  </TargetSettings>
 </Configuration>
