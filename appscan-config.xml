@@ -5,6 +5,6 @@
  
 </Targets>
  <TargetSettings>
-  <Target path="/data/workspace/Demo-Appscan/*"/>
+  <Target path="/data/workspace/Demo-Appscan/fundTransferJ.war"/>
  </TargetSettings>
 </Configuration>
