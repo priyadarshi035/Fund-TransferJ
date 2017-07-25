@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 <Targets>
-<Target path="$WORKSPACE"/>
+<Target path="/data/workspace/Demo-Appscan"/>
 </Targets>
  <TargetSettings>
-  <Target path="$WORKSAPCE/fundTransferJ.war"/>
+  <Target path="/data/workspace/Demo-Appscan/fundTransferJ.war"/>
  </TargetSettings>
 </Configuration>
