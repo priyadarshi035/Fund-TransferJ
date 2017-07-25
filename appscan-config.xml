@@ -2,6 +2,8 @@
 <Configuration>
 <Targets>
 <Target outputs-only="true" path="/data/workspace/Demo-Appscan"/>
+ <CustomBuildInfo additional_classpath="dependency_path"
+        jdk_path="JDK_path" jsp_compiler="JSP_compiler_path"/>
 </Targets>
  <TargetSettings>
   <Target path="/data/workspace/Demo-Appscan/*"/>
