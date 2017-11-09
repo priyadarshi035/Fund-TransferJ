@@ -24,7 +24,7 @@
 var QUnitRunner = function (args) {
 	// Take the args array and turn it into an object has using the passed keys.
 	// e.g. --hello world becomes console.log(options.hello); prints "World".
-
+    console.log("args array---->"+args)
 	var opts = {},
 		numArgs = args.length;
 	for (var i = 0; i < numArgs; i++) {
