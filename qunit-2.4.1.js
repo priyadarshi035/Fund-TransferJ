@@ -30,7 +30,7 @@ page.open(url, function (status) {
 
         setTimeout(function () {
 
-            var path = 'results.xml';
+            var path = 'results.html';
 
             var output = page.evaluate(function () {
 
